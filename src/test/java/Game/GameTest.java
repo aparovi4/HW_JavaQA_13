@@ -55,5 +55,28 @@ public class GameTest {
         Assertions.assertThrows(NotRegisteredException.class,
                 () -> game.round("Tom","Mark"));
     }
+    @Test
+    public void whenSecondPlayerDoesNotExist(){
+        Game game = new Game();
+        Player greg = new Player(1, "Greg", 10);
+        Player mark = new Player(2, "Mark", 10);
 
+        game.register(greg);
+        game.register(mark);
+
+        Assertions.assertThrows(NotRegisteredException.class,
+                () -> game.round("Greg","Tom"));
+    }
+    @Test
+    public void whenBothPlayersDoesNotExist(){
+        Game game = new Game();
+        Player greg = new Player(1, "Greg", 10);
+        Player mark = new Player(2, "Mark", 10);
+
+        game.register(greg);
+        game.register(mark);
+
+        Assertions.assertThrows(NotRegisteredException.class,
+                () -> game.round("Mike","Tom"));
+    }
 }
